@@ -1,13 +1,9 @@
 import React, { Component } from 'react'
 import { ScrollView } from 'react-native'
-import { Tile, List, ListItem, Button } from 'react-native-elements'
+import { Tile, List, ListItem } from 'react-native-elements'
 import { me } from '../config/data'
 
 class UserDetail extends Component {
-  handleSettingsPress = () => {
-    this.props.navigation.navigate('Settings')
-  };
-
   render () {
     return (
       <ScrollView>
@@ -16,12 +12,6 @@ class UserDetail extends Component {
           featured
           title={`${this.props.name.first.toUpperCase()} ${this.props.name.last.toUpperCase()}`}
           caption={this.props.email}
-        />
-
-        <Button
-          title='Settings'
-          buttonStyle={{ marginTop: 20 }}
-          onPress={this.handleSettingsPress}
         />
 
         <List>
