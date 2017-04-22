@@ -8,12 +8,15 @@
     "lint": "standard"
   },
   "dependencies": {
-    "native-base": "^2.0.12",
     "react": "~15.4.1",
-    "react-native": "0.42.0",
-    "react-native-elements": "^0.10.2",
-    "react-native-vector-icons": "^4.0.0",
-    "react-navigation": "^1.0.0-beta.7"
+    "react-native": "0.42.3",
+    "react-native-animatable": "^1.1.1",
+    "react-native-collapsible": "^0.8.0",
+    "react-native-elements": "^0.11.1",
+    "react-native-vector-icons": "^4.0.1",
+    "react-navigation": "^1.0.0-beta.7",
+    "react-redux": "^5.0.4",
+    "redux": "^3.6.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.1",

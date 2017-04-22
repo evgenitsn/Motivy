@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import {Root} from './config/router'
-// import { DrawerNavigator } from 'react-navigation'
+import { Root } from './Routes'
 
 class App extends Component {
   render () {
