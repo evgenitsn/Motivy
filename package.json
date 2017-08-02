@@ -1,45 +1,26 @@
 {
-  "name": "Motivy",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest",
-    "lint": "standard"
-  },
-  "dependencies": {
-    "react": "~15.4.1",
-    "react-native": "0.42.3",
-    "react-native-animatable": "^1.1.1",
-    "react-native-collapsible": "^0.8.0",
-    "react-native-elements": "^0.11.1",
-    "react-native-vector-icons": "^4.0.1",
-    "react-navigation": "^1.0.0-beta.7",
-    "react-redux": "^5.0.4",
-    "redux": "^3.6.0"
-  },
-  "devDependencies": {
-    "babel-eslint": "^7.2.1",
-    "babel-jest": "19.0.0",
-    "babel-preset-react-native": "1.9.1",
-    "eslint": "^3.18.0",
-    "eslint-config-standard": "^7.1.0",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-react": "^6.10.3",
-    "eslint-plugin-standard": "^2.1.1",
-    "jest": "19.0.2",
-    "react-test-renderer": "~15.4.1",
-    "standard": "*"
-  },
-  "jest": {
-    "preset": "react-native"
-  },
-  "standard": {
-    "parser": "babel-eslint",
-    "ignore": [
-      "__tests__",
-      "android",
-      "ios"
-    ]
-  }
+	"name": "Motivy",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"start": "node node_modules/react-native/local-cli/cli.js start",
+		"test": "jest"
+	},
+	"dependencies": {
+		"react": "16.0.0-alpha.12",
+		"react-native": "0.47.1",
+		"react-native-firebase": "^2.0.5",
+		"react-navigation": "^1.0.0-beta.11",
+		"react-redux": "^5.0.5",
+		"redux": "^3.7.2"
+	},
+	"devDependencies": {
+		"babel-jest": "20.0.3",
+		"babel-preset-react-native": "2.1.0",
+		"jest": "20.0.4",
+		"react-test-renderer": "16.0.0-alpha.12"
+	},
+	"jest": {
+		"preset": "react-native"
+	}
 }

@@ -1,4 +1,3 @@
-import HomePage from './Home/HomePage'
-import SettingsPage from './Settings/SettingsPage'
+import Home from './Home/Home'
 
-export {HomePage, SettingsPage}
+export {Home}

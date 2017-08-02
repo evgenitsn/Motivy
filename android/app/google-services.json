@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "595563945271",
+    "firebase_url": "https://motivy-dev.firebaseio.com",
+    "project_id": "motivy-dev",
+    "storage_bucket": "motivy-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:595563945271:android:5fe01405ce5c5f6f",
+        "android_client_info": {
+          "package_name": "com.motivy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "595563945271-3lfocb43mcglc8mutiak8q2lnb7fogr5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.motivy",
+            "certificate_hash": "ebd7ec545177953beae6f0ec54a41be29b5a0957"
+          }
+        },
+        {
+          "client_id": "595563945271-ptbkp04d416clj1sa50imotkk92jhq8c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsptVxaSd2N3lCXUE3szyAvIuyoycARks"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "595563945271-ptbkp04d416clj1sa50imotkk92jhq8c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
