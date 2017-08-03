@@ -23,8 +23,17 @@ export default class Home extends Component {
     firebase.storage().ref().child('images/quote').put(file, metadata).then(console.warn('?'))
   }
 
+  loginGoogle () {
+    firebase.auth().createUserWithEmailAndPassword('foo@bar.com', '123456')
+    .then((user) => {
+      console.warn('user created', user)
+    })
+    .catch((err) => {
+      console.warn('An error occurred', err)
+    })
+  }
+
   render () {
-    const {navigate} = this.props.navigation
     return (
       <View
         style={{
@@ -46,7 +55,7 @@ export default class Home extends Component {
             marginTop: 50
           }}
         />
-        <Button title='Click' onPress={() => this.uploadImage()} />
+        <Button title='Click' onPress={() => this.loginGoogle()} />
       </View>
     )
   }
