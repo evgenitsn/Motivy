@@ -140,10 +140,14 @@ dependencies {
     compile(project(':react-native-firebase')) {
         transitive = false
     }
+    compile(project(":react-native-google-signin")){         
+        exclude group: "com.google.android.gms" // very important
+    }
     compile "com.google.firebase:firebase-core:11.0.0"
 
     // If you are receiving Google Play API availability issues, add the following dependency
     compile "com.google.android.gms:play-services-base:11.0.0"
+    compile "com.google.android.gms:play-services-auth:11.0.0"
 
     // RNFirebase optional dependencies
     compile "com.google.firebase:firebase-ads:11.0.0"
