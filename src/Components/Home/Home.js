@@ -1,9 +1,16 @@
 import React, { Component } from 'react'
 import firebase from '../../../firebase'
-import { View, Image, Button } from 'react-native'
+import { View, Image, Button, Text } from 'react-native'
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin'
 
 export default class Home extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      user: null
+    }
+  }
+
   componentWillMount () {
     GoogleSignin.configure({
       webClientId: '595563945271-ptbkp04d416clj1sa50imotkk92jhq8c.apps.googleusercontent.com'
@@ -37,6 +44,7 @@ export default class Home extends Component {
         firebase.auth().signInWithCredential(credential)
           .then((u) => {
             console.log('LOGGED! ', u)
+            this.setState({user: user});
           })
           .catch((e) => {
             console.log('err', e)
@@ -56,6 +64,7 @@ export default class Home extends Component {
       console.log('out')
       const user = GoogleSignin.currentUser()
       console.log(JSON.stringify(user))
+      this.setState({user: null});
     })
     .catch((err) => {
       console.log('err', err)
@@ -63,34 +72,53 @@ export default class Home extends Component {
   }
 
   render () {
-    return (
-      <View
-        style={{
-          flex: 1,
-          alignItems: 'center',
-          justifyContent: 'center'
-        }}
-      >
-        <Image
-          source={require('../../Assets/quote.jpg')}
-          style={{
-            alignSelf: 'center',
-            justifyContent: 'center',
-            height: 300,
-            width: 300,
-            borderWidth: 1,
-            borderRadius: 15,
-            marginBottom: 160,
-            marginTop: 50
-          }}
-        />
-        <GoogleSigninButton
-          style={{width: 48, height: 48}}
-          size={GoogleSigninButton.Size.Icon}
-          color={GoogleSigninButton.Color.Dark}
-          onPress={this.loginGoogle.bind(this)} />
-        <Button title='Click' onPress={() => this.logout()} />
-      </View>
-    )
+    if (!this.state.user) {
+      return (
+        <View style={styles.container}>
+          <Text>Hello stranger, tap the button to login :)</Text>
+          <GoogleSigninButton
+            style={{width: 120, height: 44}}
+            color={GoogleSigninButton.Color.Light}
+            size={GoogleSigninButton.Size.Icon}
+            onPress={() => this.loginGoogle()}
+          />
+        </View>
+      )
+    }
+    if (this.state.user) {
+      return (
+        <View style={styles.container}>
+          <Text style={{fontSize: 18, fontWeight: 'bold', marginBottom: 20}}>Welcome {this.state.user.name}</Text>
+          <Text>Your email is: {this.state.user.email}</Text>
+          <Image
+            source={require('../../Assets/quote.jpg')}
+            style={{
+              alignSelf: 'center',
+              justifyContent: 'center',
+              height: 300,
+              width: 300,
+              borderWidth: 1,
+              borderRadius: 15,
+              marginBottom: 160,
+              marginTop: 50
+            }}
+          />
+          <GoogleSigninButton
+            style={{width: 48, height: 48}}
+            size={GoogleSigninButton.Size.Icon}
+            color={GoogleSigninButton.Color.Dark}
+            onPress={this.loginGoogle.bind(this)} />
+          <Button title='Logout' onPress={() => this.logout()} />
+        </View>
+      )
+    }
+  }
+}
+
+const styles = {
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 }
