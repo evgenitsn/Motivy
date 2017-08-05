@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import firebase from '../../../firebase'
-import { View, Image, Button, Text } from 'react-native'
+import { View, Image, Button, Text, ActivityIndicator } from 'react-native'
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin'
 
 export default class Home extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      user: null
+      user: null,
+      isLoading: true,
+      animating: true
     }
   }
 
@@ -18,9 +20,9 @@ export default class Home extends Component {
   }
 
   componentDidMount () {
+    this.setState({isLoading: true})
     GoogleSignin.currentUserAsync().then((user) => {
-      // console.log('USER', user)
-      this.setState({user: user})
+      this.setState({isLoading: false, user: user})
     }).done()
   }
 
@@ -37,12 +39,14 @@ export default class Home extends Component {
   }
 
   loginGoogle () {
+    this.setState({isLoading: true})
     GoogleSignin.signIn()
       .then((user) => {
         console.log(user)
         let credential = {token: user.idToken, secret: user.serverAuthCode, provider: 'google', providerId: 'google'}
         firebase.auth().signInWithCredential(credential)
           .then((u) => {
+            this.setState({isLoading: false})
             console.log('LOGGED! ', u)
             this.setState({user: user});
           })
@@ -72,6 +76,16 @@ export default class Home extends Component {
   }
 
   render () {
+    if(this.state.isLoading) {
+      return(
+        <View style={styles.container}>
+          <ActivityIndicator
+            animating={this.state.animating}
+            size="large"
+          />
+        </View>
+      )
+    }
     if (!this.state.user) {
       return (
         <View style={styles.container}>

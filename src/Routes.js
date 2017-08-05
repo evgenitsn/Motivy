@@ -1,35 +1,48 @@
-import React from 'react'
-import { Text, ScrollView, View } from 'react-native'
-import { StackNavigator, TabNavigator , TabBarBottom} from 'react-navigation'
+import { StackNavigator, TabNavigator } from 'react-navigation'
 
-import { Home } from './Components'
+import { SignIn, Home } from './Screens'
 
-export const Root = TabNavigator(
-  {
-    Test1: {
-      screen: Home
+export const createRootNavigator = (signedIn = false) => {
+  return StackNavigator({
+    SignedIn: {
+      screen: SignedIn,
+      navigationOptions: {
+        gesturesEnabled: false
+      }
     },
-    Test2: {
-      screen: Home
+    SignedOut: {
+      screen: SignedOut,
+      navigationOptions: {
+        gesturesEnabled: false
+      }
+    }
+  }, {
+    headerMode: 'none',
+    mode: 'modal',
+    initialRouteName: signedIn ? 'SignedIn' : 'SignedOut'
+  })
+}
+
+export const SignedOut = StackNavigator({
+    SignIn: {
+      screen: SignIn,
+      navigationOptions: {
+        title: 'Sign In'
+      }
+    }    
+  })
+
+export const SignedIn = TabNavigator({
+    Home1: {
+      screen: Home,
+      navigationOptions: {
+        tabBarLabel: 'Home1',
+      }
     },
-    Test3: {
-      screen: Home
-    }
-  },{
-    tabBarComponent: TabBarBottom,
-    tabBarPosition: 'bottom',
-    swipeEnabled: true,
-    animationEnabled: true,
-    tabBarOptions: {
-      activeTintColor: '#e91e63',
-      labelStyle: {
-        fontSize: 20,
-        alignItems: 'center',
-        justifyContent: 'center'
-      },
-      style: {
-        backgroundColor: 'blue',
-      },
-    }
-  }
-)
+    Home2: {
+      screen: Home,
+      navigationOptions: {
+        tabBarLabel: 'Home2',
+      }
+    }        
+  })
