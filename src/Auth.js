@@ -1,21 +1,31 @@
-import { AsyncStorage } from "react-native"
+import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin'
+import firebase from '../firebase'
 
-export const USER_KEY = "auth-demo-key"
-
-export const onSignIn = () => AsyncStorage.setItem(USER_KEY, "true")
-
-export const onSignOut = () => AsyncStorage.removeItem(USER_KEY)
-
-export const isSignedIn = () => {
-  return new Promise((resolve, reject) => {
-    AsyncStorage.getItem(USER_KEY)
-      .then(res => {
-        if (res !== null) {
-          resolve(true)
-        } else {
-          resolve(false)
+export const onSignIn = () => GoogleSignin.signIn()
+    .then((user) => {
+        let credential = {
+          token: user.idToken, 
+          secret: user.serverAuthCode, 
+          provider: 'google', 
+          providerId: 'google'
         }
-      })
-      .catch(err => reject(err))
-  });
-};
+        return firebase.auth().signInWithCredential(credential)
+          .then(user => user)
+          .catch(error => error)
+    })
+    .catch((error) => {
+      console.warn('WRONG SIGNIN', error)
+      return error
+    })
+
+
+export const onSignOut = () => GoogleSignin.signOut()
+  .then(() => {
+    console.warn('User', JSON.stringify(GoogleSignin.currentUser()))
+  })
+  .catch((err) => {
+    console.log('err', err)
+  })
+
+
+export const isSignedIn = () => GoogleSignin.currentUserAsync().then(user => user)
