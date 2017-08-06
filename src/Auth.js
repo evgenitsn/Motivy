@@ -1,5 +1,6 @@
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin'
 import firebase from '../firebase'
+import { GoogleWebClientId } from './Utils/constants'
 
 export const onSignIn = () => GoogleSignin.signIn()
     .then((user) => {
@@ -20,8 +21,10 @@ export const onSignIn = () => GoogleSignin.signIn()
 
 
 export const onSignOut = () => GoogleSignin.signOut()
-  .then(() => {
-    console.warn('User', JSON.stringify(GoogleSignin.currentUser()))
+  .then((res) => {
+    if(res){
+      console.warn('Signed out', JSON.stringify(res))
+    }
   })
   .catch((err) => {
     console.log('err', err)
@@ -29,3 +32,12 @@ export const onSignOut = () => GoogleSignin.signOut()
 
 
 export const isSignedIn = () => GoogleSignin.currentUserAsync().then(user => user)
+export const googleConfigure = () => GoogleSignin.configure(GoogleWebClientId).then(hasPlayServices())
+
+const hasPlayServices = () => GoogleSignin.hasPlayServices({ autoResolve: true })
+  .then(() => {
+    // play services are available. can now configure library
+  })
+  .catch((err) => {
+    console.warn("Play services error", err.code, err.message);
+  })

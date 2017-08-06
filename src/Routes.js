@@ -1,6 +1,6 @@
 import { StackNavigator, TabNavigator } from 'react-navigation'
 
-import { SignIn, Home } from './Screens'
+import { SignIn, Home, Profile } from './Screens'
 
 export const createRootNavigator = (signedIn = false) => {
   return StackNavigator({
@@ -39,10 +39,10 @@ export const SignedIn = TabNavigator({
         tabBarLabel: 'Home1',
       }
     },
-    Home2: {
-      screen: Home,
+    Profile: {
+      screen: Profile,
       navigationOptions: {
-        tabBarLabel: 'Home2',
+        tabBarLabel: 'Profile',
       }
     }        
   })

@@ -1,41 +1,44 @@
 import React, { Component } from 'react'
-import { View, Button, Text } from 'react-native'
-import { NavigationActions } from 'react-navigation'
-import { onSignOut } from '../Auth'
+import { View, Text, Image } from 'react-native'
+
+import { isSignedIn } from '../Auth'
 
 export default class Home extends Component {
+  constructor() {
+    super()
+    this.state = {
+      user: ''
+    }
+  }
+
+  componentWillMount() {
+    isSignedIn().then((res) => {
+      this.setState({user: res})
+    })
+  } 
+  
   signOut () {
     console.log('Sign in function')
   }
 
-  disableBackButtonIfOnTop(navigation) {
-    navigation.dispatch(
-      NavigationActions.reset({
-        index: 0,
-        key: null,
-        actions: [
-          NavigationActions.navigate({
-            routeName: 'SignedOut',
-            action: [NavigationActions.navigate({routeName: 'SignIn'})]
-          })
-        ]
-      })
-    )
-  }
-
   render () {
-    let navigation = this.props.navigation
     return (
         <View style={styles.container}>
-            <Text>Hello :)</Text>
-            <Button 
-              backgroundColor="#03A9F4"
-              title='Sign Out' 
-              buttonStyle={{ marginTop: 20 }}
-              backgroundColor="transparent"
-              textStyle={{ color: "#bcbec1" }}
-              onPress={() => onSignOut().then(() => this.disableBackButtonIfOnTop(navigation))}
-            />
+          <Text style={{fontSize: 18, fontWeight: 'bold', marginBottom: 20}}>Welcome {this.state.user.name}</Text>
+          <Text>Your email is: {this.state.user.email}</Text>
+          <Image
+            source={require('../Assets/quote.jpg')}
+            style={{
+              alignSelf: 'center',
+              justifyContent: 'center',
+              height: 300,
+              width: 300,
+              borderWidth: 1,
+              borderRadius: 15,
+              marginBottom: 160,
+              marginTop: 50
+            }}
+          />
         </View>
     )
   }
