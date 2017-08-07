@@ -22,7 +22,7 @@ export default class SignIn extends Component {
         actions: [
           NavigationActions.navigate({
             routeName: 'SignedIn',
-            action: [NavigationActions.navigate({routeName: 'Home1'})]
+            action: [NavigationActions.navigate({routeName: 'Home'})]
           })
         ]
       })

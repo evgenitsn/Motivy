@@ -1,5 +1,7 @@
+import React from 'react'
 import { StackNavigator, TabNavigator } from 'react-navigation'
-
+import { NavigationComponent } from 'react-native-material-bottom-navigation'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 import { SignIn, Home, Profile } from './Screens'
 
 export const createRootNavigator = (signedIn = false) => {
@@ -33,16 +35,35 @@ export const SignedOut = StackNavigator({
   })
 
 export const SignedIn = TabNavigator({
-    Home1: {
+    Home: {
       screen: Home,
       navigationOptions: {
-        tabBarLabel: 'Home1',
+        tabBarLabel: 'Home',
+        tabBarIcon: () => (<Icon size={24} color="white" name='home' />)
       }
     },
     Profile: {
       screen: Profile,
       navigationOptions: {
         tabBarLabel: 'Profile',
+        tabBarIcon: () => (<Icon size={24} color="white" name='person' />)
       }
-    }        
+    }
+  },{
+    tabBarComponent: NavigationComponent,
+    tabBarPosition: 'bottom',
+    tabBarOptions: {
+      bottomNavigationOptions: {
+        labelColor: 'white',
+        rippleColor: 'white',
+        tabs: {
+          Home: {
+            barBackgroundColor: '#37474F'
+          },
+          Profile: {
+            barBackgroundColor: '#00796B'
+          }
+        }
+      }
+    }
   })
