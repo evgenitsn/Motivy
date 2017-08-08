@@ -6,15 +6,14 @@ import { GoogleSigninButton } from 'react-native-google-signin'
 import { onSignIn } from '../Auth'
 
 export default class SignIn extends Component {
-  constructor(){
+  constructor () {
     super()
     this.state = {
       isLoading: false
     }
   }
 
-
-  disableBackButtonIfOnTop(navigation) {
+  disableBackButtonIfOnTop (navigation) {
     navigation.dispatch(
       NavigationActions.reset({
         index: 0,
@@ -28,29 +27,29 @@ export default class SignIn extends Component {
       })
     )
   }
-  
-  login() {
+
+  login () {
     let navigation = this.props.navigation
     this.setState({isLoading: true})
     // TODO Disable account login
     onSignIn().then((res) => {
       this.setState({isLoading: false})
-      //console.warn(JSON.stringify(res))
-      if(res.uid){
+      // console.warn(JSON.stringify(res))
+      if (res.uid) {
         this.disableBackButtonIfOnTop(navigation)
       } else {
-        //TODO Add alert here
-        //console.warn('Your ACCOUNT WAS DISABLED')
+        // TODO Add alert here
+        // console.warn('Your ACCOUNT WAS DISABLED')
       }
     }).catch((e) => console.warn(e))
   }
 
   render () {
-    if(this.state.isLoading){
+    if (this.state.isLoading) {
       return (
         <View style={styles.container}>
           <ActivityIndicator
-            animating={true}
+            animating
             style={{height: 80}}
             size={100}
           />
@@ -58,15 +57,15 @@ export default class SignIn extends Component {
       )
     } else {
       return (
-          <View style={styles.container}>
-            <Text>Hello stranger, tap the button to login :)</Text>
-            <GoogleSigninButton
-              style={{width: "60%", height: "10%"}}
-              size={GoogleSigninButton.Size.Wide}
-              color={GoogleSigninButton.Color.Dark}
-              onPress={() => this.login()}
+        <View style={styles.container}>
+          <Text>Hello stranger, tap the button to login :)</Text>
+          <GoogleSigninButton
+            style={{width: '60%', height: '10%'}}
+            size={GoogleSigninButton.Size.Wide}
+            color={GoogleSigninButton.Color.Dark}
+            onPress={() => this.login()}
             />
-          </View>
+        </View>
       )
     }
   }

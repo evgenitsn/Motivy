@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-import firebase from '../../../firebase'
-import { View, Image, Button, Text, ActivityIndicator } from 'react-native'
-import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin'
+import firebase from '../../Firebase'
 
 export default class Home extends Component {
-    writeUserData (userId, name, email, imageUrl) {
+  writeUserData (userId, name, email, imageUrl) {
     firebase.database().ref('users/' + userId).set({
       username: name,
       email: email,

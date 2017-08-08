@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
-import { SignedOut, SignedIn, createRootNavigator } from './Routes'
-import { View, ActivityIndicator } from 'react-native'
+import { createRootNavigator } from './Routes'
 import { isSignedIn, googleConfigure } from './Auth'
 
-
 export default class App extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       signedIn: false,
@@ -13,10 +11,10 @@ export default class App extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     isSignedIn().then(res => {
-      //console.warn('USER', res)
-      if(res!==null && res.uid!==null){
+      // console.warn('USER', res)
+      if (res !== null && res.uid !== null) {
         this.setState({user: res, signedIn: true, checkedSignIn: true})
       } else {
         this.setState({ signedIn: false, checkedSignIn: true })
@@ -24,19 +22,19 @@ export default class App extends Component {
     })
   }
 
-  componentWillMount() {
+  componentWillMount () {
     googleConfigure()
   }
 
   render () {
     const { checkedSignIn, signedIn } = this.state
-    if(!checkedSignIn) {
-      //TODO Here we can return a component that looks like a splashscreen instead of null,
-      //because there is white screen for a second
+    if (!checkedSignIn) {
+      // TODO Here we can return a component that looks like a splashscreen instead of null,
+      // because there is white screen for a second
       return (null)
     }
 
     const Layout = createRootNavigator(signedIn)
-    return <Layout/>
+    return <Layout />
   }
 }
