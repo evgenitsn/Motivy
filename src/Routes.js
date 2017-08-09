@@ -2,7 +2,7 @@ import React from 'react'
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { NavigationComponent } from 'react-native-material-bottom-navigation'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import { SignIn, Home, Profile } from './Screens'
+import { SignIn, Home, Profile, Recent, Favorites } from './Screens'
 
 export const createRootNavigator = (signedIn = false) => {
   return StackNavigator({
@@ -38,30 +38,58 @@ export const SignedIn = TabNavigator({
   Home: {
     screen: Home,
     navigationOptions: {
-      tabBarLabel: 'Home',
-      tabBarIcon: () => (<Icon size={24} color='white' name='home' />)
+      tabBarIcon: () => (<Icon size={24} color='#000' name='home' />)
+    }
+  },
+  Recent: {
+    screen: Recent,
+    navigationOptions: {
+      tabBarIcon: () => (<Icon size={24} color='#000' name='timer' />)
+    }
+  },
+  Favorites: {
+    screen: Favorites,
+    navigationOptions: {
+      tabBarIcon: () => (<Icon size={24} color='#000' name='favorite' />)
     }
   },
   Profile: {
     screen: Profile,
     navigationOptions: {
-      tabBarLabel: 'Profile',
-      tabBarIcon: () => (<Icon size={24} color='white' name='person' />)
+      tabBarIcon: () => (<Icon size={24} color='#000' name='person' />)
     }
   }
 }, {
+  swipeEnabled: true,
+  animationEnabled: false,
   tabBarComponent: NavigationComponent,
   tabBarPosition: 'bottom',
   tabBarOptions: {
     bottomNavigationOptions: {
-      labelColor: 'white',
+      labelColor: '#999',
       rippleColor: 'white',
+      style: {
+        height: 48
+      },
+      innerStyle: {
+        paddingTop: 16
+      },
       tabs: {
         Home: {
-          barBackgroundColor: '#37474F'
+          barBackgroundColor: '#999',
+          activeIcon: <Icon size={24} color='#fff' name='home' />
+        },
+        Recent: {
+          barBackgroundColor: '#999',
+          activeIcon: <Icon size={24} color='#fff' name='timer' />
+        },
+        Favorites: {
+          barBackgroundColor: '#999',
+          activeIcon: <Icon size={24} color='#fff' name='favorite' />
         },
         Profile: {
-          barBackgroundColor: '#00796B'
+          barBackgroundColor: '#999',
+          activeIcon: <Icon size={24} color='#fff' name='person' />
         }
       }
     }
