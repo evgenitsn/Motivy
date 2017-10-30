@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text, Button, ActivityIndicator } from 'react-native'
+import { View, Text, Image, ActivityIndicator } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import { GoogleSigninButton } from 'react-native-google-signin'
+
+import { Logo } from '../Components'
 
 import { onSignIn } from '../Auth'
 
@@ -57,7 +59,10 @@ export default class SignIn extends Component {
     } else {
       return (
         <View style={styles.container}>
-          <Text>Hello stranger, tap the button to login :)</Text>
+          <View style={styles.header}>
+            <Logo />
+            <Text style={styles.heading}>M O T I V Y</Text>
+          </View>
           <GoogleSigninButton
             style={{width: '60%', height: '10%'}}
             size={GoogleSigninButton.Size.Wide}
@@ -75,5 +80,15 @@ const styles = {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  header: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 200
+  },
+  heading: {
+    marginTop: 50,
+    fontSize: 48,
+    color: '#000000'
   }
 }

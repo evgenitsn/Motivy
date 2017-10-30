@@ -1,3 +1,4 @@
-import Home from './Home/Home'
+import Home from './Home/Home-deprecated'
+import Logo from './Logo'
 
-export {Home}
+export {Home, Logo}
