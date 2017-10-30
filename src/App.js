@@ -11,19 +11,18 @@ export default class App extends Component {
     }
   }
 
+  componentWillMount () {
+    googleConfigure()
+  }
+
   componentDidMount () {
     isSignedIn().then(res => {
-      // console.warn('USER', res)
       if (res !== null && res.uid !== null) {
-        this.setState({user: res, signedIn: true, checkedSignIn: true})
+        this.setState({ user: res, signedIn: true, checkedSignIn: true })
       } else {
         this.setState({ signedIn: false, checkedSignIn: true })
       }
     })
-  }
-
-  componentWillMount () {
-    googleConfigure()
   }
 
   render () {

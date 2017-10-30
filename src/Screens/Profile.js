@@ -43,7 +43,6 @@ export default class Profile extends Component {
           backgroundColor='#03A9F4'
           title='Sign Out'
           buttonStyle={{ marginTop: 20 }}
-          backgroundColor='transparent'
           textStyle={{ color: '#bcbec1' }}
           onPress={() => onSignOut().then(() => this.disableBackButtonIfOnTop(navigation))}
           />

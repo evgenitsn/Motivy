@@ -34,7 +34,6 @@ export default class SignIn extends Component {
     // TODO Disable account login
     onSignIn().then((res) => {
       this.setState({isLoading: false})
-      // console.warn(JSON.stringify(res))
       if (res.uid) {
         this.disableBackButtonIfOnTop(navigation)
       } else {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import firebase from '../../Firebase'
+import firebase from 'react-native-firebase'
 
 export default class Home extends Component {
   writeUserData (userId, name, email, imageUrl) {

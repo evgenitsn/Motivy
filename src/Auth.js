@@ -1,17 +1,13 @@
-import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin'
-import firebase from './Firebase'
+import { GoogleSignin } from 'react-native-google-signin'
+import firebase from 'react-native-firebase'
 import { GoogleWebClientId } from './Utils/constants'
 
 export const onSignIn = () => GoogleSignin.signIn()
     .then((user) => {
-      let credential = {
-        token: user.idToken,
-        secret: user.serverAuthCode,
-        provider: 'google',
-        providerId: 'google'
-      }
+      const {idToken, serverAuthCode} = user
+      const credential = firebase.auth.GoogleAuthProvider.credential(idToken, serverAuthCode)
       return firebase.auth().signInWithCredential(credential)
-          .then(user => user)
+          .then(loggedUser => loggedUser)
           .catch(error => error)
     })
     .catch((error) => {
