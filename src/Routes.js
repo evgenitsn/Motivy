@@ -1,7 +1,9 @@
 import React from 'react'
+import { Easing, Animated } from 'react-native'
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { SignIn, Home, Profile, Recent, Favorites } from './Screens'
+import QuoteDetail from './Screens/Modals/QuoteDetail'
 
 export const createRootNavigator = (signedIn = false) => {
   return StackNavigator({
@@ -43,7 +45,23 @@ export const SignedIn = TabNavigator({
     }
   },
   Recent: {
-    screen: Recent,
+    screen: StackNavigator({
+      RecentIn: {
+        screen: Recent
+      },
+      QuoteDetails: {
+        screen: QuoteDetail
+      }
+    }, {
+      headerMode: 'none',
+      transitionConfig: () => ({
+        transitionSpec: {
+          duration: 0,
+          timing: Animated.timing,
+          easing: Easing.step0
+        }
+      })
+    }),
     navigationOptions: {
       tabBarIcon: ({tintColor}) => (<Icon size={24} color={tintColor} name='timer' />)
     }
@@ -65,6 +83,7 @@ export const SignedIn = TabNavigator({
   animationEnabled: false,
   tabBarComponent: TabBarBottom,
   tabBarPosition: 'bottom',
+  lazy: true,
   tabBarOptions: {
     activeTintColor: '#e91',
     style: {

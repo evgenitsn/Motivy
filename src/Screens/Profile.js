@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Button, Text } from 'react-native'
+import { View, Button, Text, Image } from 'react-native'
 
 import { NavigationActions } from 'react-navigation'
 import { onSignOut, isSignedIn } from '../Auth'
@@ -35,8 +35,10 @@ export default class Profile extends Component {
 
   render () {
     let navigation = this.props.navigation
+    console.log(this.state.user.photo)
     return (
       <View style={styles.container}>
+        <Image style={styles.profileImage} source={{uri: this.state.user.photo}} />
         <Text style={{fontSize: 18, fontWeight: 'bold', marginBottom: 20}}>Welcome {this.state.user.name}</Text>
         <Text style={{marginBottom: 20}}>Your email is: {this.state.user.email}</Text>
         <Button
@@ -56,5 +58,9 @@ const styles = {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  profileImage: {
+    width: 100,
+    height: 100
   }
 }

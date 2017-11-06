@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Button, ListView, Image } from 'react-native'
+import firebase from 'react-native-firebase'
+import { QuotesList } from '../Components'
 
 export default class Recent extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <Text style={{fontSize: 18, fontWeight: 'bold', marginBottom: 20}}>Recent List</Text>
+        <Text style={styles.title}>Recent List</Text>
+        <QuotesList navigation={this.props.navigation} />
       </View>
     )
   }
@@ -13,8 +16,10 @@ export default class Recent extends Component {
 
 const styles = {
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    flex: 1
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold'
   }
 }

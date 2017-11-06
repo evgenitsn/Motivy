@@ -1,4 +1,5 @@
-import Home from './Home/Home-deprecated'
 import Logo from './Logo'
+import QuoteItem from './QuoteItem'
+import QuotesList from './QuotesList'
 
-export {Home, Logo}
+export {Logo, QuoteItem, QuotesList}

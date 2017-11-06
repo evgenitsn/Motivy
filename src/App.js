@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 import { createRootNavigator } from './Routes'
 import { isSignedIn, googleConfigure } from './Auth'
 
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import reducers from './Reducers/QuotesReducer'
+
+const store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+
 export default class App extends Component {
   constructor (props) {
     super(props)
@@ -34,6 +40,10 @@ export default class App extends Component {
     }
 
     const Layout = createRootNavigator(signedIn)
-    return <Layout />
+    return (
+      <Provider store={store}>
+        <Layout />
+      </Provider>
+    )
   }
 }
