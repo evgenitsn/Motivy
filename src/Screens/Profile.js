@@ -35,7 +35,6 @@ export default class Profile extends Component {
 
   render () {
     let navigation = this.props.navigation
-    console.log(this.state.user.photo)
     return (
       <View style={styles.container}>
         <Image style={styles.profileImage} source={{uri: this.state.user.photo}} />

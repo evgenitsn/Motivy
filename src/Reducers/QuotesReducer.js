@@ -1,10 +1,12 @@
 import {
   SELECTED_QUOTE,
   NONE_SELECTED,
-  FETCH_DATA
+  FETCH_DATA,
+  FETCH_FEATURED_QUOTE
  } from '../Utils/constants'
 
 const initialState = {
+  featuredQuote: {},
   quotes: [],
   detailView: false,
   quoteSelected: null
@@ -16,6 +18,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         quotes: action.payload
+      }
+    case FETCH_FEATURED_QUOTE:
+      return {
+        ...state,
+        featuredQuote: action.payload
       }
     case SELECTED_QUOTE:
       return {
