@@ -1,17 +1,22 @@
-import quotes from './quotes.json'
 import {
   SELECTED_QUOTE,
-  NONE_SELECTED
+  NONE_SELECTED,
+  FETCH_DATA
  } from '../Utils/constants'
 
 const initialState = {
-  quotes,
+  quotes: [],
   detailView: false,
   quoteSelected: null
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case FETCH_DATA:
+      return {
+        ...state,
+        quotes: action.payload
+      }
     case SELECTED_QUOTE:
       return {
         ...state,

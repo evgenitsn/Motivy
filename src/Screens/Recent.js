@@ -20,6 +20,9 @@ const styles = {
   },
   title: {
     fontSize: 18,
-    fontWeight: 'bold'
+    alignSelf: 'center',
+    fontWeight: 'bold',
+    paddingTop: 20,
+    paddingBottom: 10
   }
 }

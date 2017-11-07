@@ -3,10 +3,11 @@ import { createRootNavigator } from './Routes'
 import { isSignedIn, googleConfigure } from './Auth'
 
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import reducers from './Reducers/QuotesReducer'
+import Thunk from 'redux-thunk'
 
-const store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(Thunk))
 
 export default class App extends Component {
   constructor (props) {

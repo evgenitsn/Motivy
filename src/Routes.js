@@ -83,6 +83,14 @@ export const SignedIn = TabNavigator({
   animationEnabled: false,
   tabBarComponent: TabBarBottom,
   tabBarPosition: 'bottom',
+  navigationOptions: ({ navigation }) => ({
+    tabBarOnPress: (scene, jumpToIndex) => {
+      if (scene.index === 1) {
+        navigation.navigate('RecentIn')
+      }
+      jumpToIndex(scene.index)
+    }
+  }),
   lazy: true,
   tabBarOptions: {
     activeTintColor: '#e91',

@@ -5,3 +5,4 @@ export const GoogleWebClientId = {
 
 export const SELECTED_QUOTE = 'SELECTED_PERSON'
 export const NONE_SELECTED = 'NONE_SELECTED'
+export const FETCH_DATA = 'FETCH_DATA'
